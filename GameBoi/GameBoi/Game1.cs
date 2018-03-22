@@ -36,7 +36,7 @@ namespace GameBoi
             Texture2D texure = Content.Load<Texture2D>("Kevin hart moving");
             animatedSprite = new AnimatedSprite(texure, 5, 4, new Vector2(400, 200), 17,2);
             Texture2D texure2 = Content.Load<Texture2D>("SmileyWalk");
-            animatedSprite2 = new AnimatedSprite(texure2, 4, 4, new Vector2(400, 200), 16, 1);
+            animatedSprite2 = new AnimatedSprite(texure2, 4, 4, new Vector2(400, 400), 16, 1);
             Texture2D texture3 = Content.Load<Texture2D>("gold bar");
             animatedSprite3 = new AnimatedSprite(texture3, 2, 1, new Vector2(300, 200), 2, 10);
             titleScreen = Content.Load<Texture2D>("Title");
