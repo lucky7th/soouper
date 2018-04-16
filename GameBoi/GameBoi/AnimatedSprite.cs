@@ -13,7 +13,8 @@ namespace GameBoi
         public int Columns { get; set; }
         private int currentFrame;
         private int totalFrames;
-        public Vector2 location;
+        public Rectangle hitbox;
+
         public AnimatedSprite(Texture2D texture, int rows, int columns,Vector2 Location, int TotalFrames, int slowDownRate)
         {
             frameSlowDown = slowDownRate;
@@ -23,7 +24,7 @@ namespace GameBoi
             Columns = columns;
             currentFrame = 0;
             totalFrames = TotalFrames;
-            location = Location;
+            hitbox = new Rectangle((int)Location.X, (int)Location.Y, Texture.Width / Columns, Texture.Height / Rows);
         }
         public void Update()
         {
@@ -44,10 +45,9 @@ namespace GameBoi
             int column = currentFrame % Columns;
 
             Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
-            Rectangle destinationRectangle = new Rectangle((int)location.X, (int)location.Y, width, height);
 
             spriteBatch.Begin();
-            spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);
+            spriteBatch.Draw(Texture, hitbox, sourceRectangle, Color.White);
             spriteBatch.End();
         }
     }

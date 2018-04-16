@@ -9,7 +9,7 @@ namespace GameBoi
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        private AnimatedSprite animatedSprite;
+        private UserCharacter animatedSprite;
         private AnimatedSprite animatedSprite2;
         private AnimatedSprite animatedSprite3;
         bool falseTitle;
@@ -34,9 +34,9 @@ namespace GameBoi
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Texture2D texure = Content.Load<Texture2D>("Kevin hart moving");
-            animatedSprite = new AnimatedSprite(texure, 5, 4, new Vector2(400, 200), 17,2);
+            animatedSprite = new UserCharacter(texure, 5, 4, new Vector2(200, 200), 17,2);
             Texture2D texure2 = Content.Load<Texture2D>("SmileyWalk");
-            animatedSprite2 = new AnimatedSprite(texure2, 4, 4, new Vector2(400, 400), 16, 1);
+            animatedSprite2 = new AnimatedSprite(texure2, 4, 4, new Vector2(400, 200), 16, 1);
             Texture2D texture3 = Content.Load<Texture2D>("gold bar");
             animatedSprite3 = new AnimatedSprite(texture3, 2, 1, new Vector2(300, 200), 2, 10);
             titleScreen = Content.Load<Texture2D>("Title");
@@ -51,32 +51,20 @@ namespace GameBoi
             KeyboardState keyState = Keyboard.GetState(); 
             if (keyState.IsKeyDown(Keys.Escape))
                 Exit();
-            for (int i = 0; i < 2; i++)
-            {
-                if (keyState.IsKeyDown(Keys.W))
-                {
-                    animatedSprite.location.Y--;
-                }
-                if (keyState.IsKeyDown(Keys.S))
-                {
-                    animatedSprite.location.Y++;
-                }
-                if (keyState.IsKeyDown(Keys.A))
-                {
-                    animatedSprite.location.X--;
-                }
-                if (keyState.IsKeyDown(Keys.D))
-                {
-                    animatedSprite.location.X++;
-                }
-            }
-            animatedSprite.Update();
+     
+            animatedSprite.Update(keyState, animatedSprite2);
             animatedSprite2.Update();
             animatedSprite3.Update();
+
+         
+
              // screens
              if (falseTitle == true)
             {
-
+                if (keyState.IsKeyDown(Keys.Space))
+                {
+                    falseTitle = false;
+                }
             }
             base.Update(gameTime);
         }
